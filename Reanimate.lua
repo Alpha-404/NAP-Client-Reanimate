@@ -27,7 +27,6 @@ if char:FindFirstChildOfClass('Humanoid').RigType == Enum.HumanoidRigType.R6 the
 	Noclip = game:GetService('RunService').Stepped:Connect(NL)
 
 	local LL = char["Left Leg"]
-	char.Torso["Left Hip"]:Destroy()
 	local att0 = Instance.new("Attachment",LL)
 	att0.Orientation = Vector3.new(0, 0, 0)
 	att0.Position = Vector3.new(0.5, 2, 0)
@@ -49,7 +48,6 @@ if char:FindFirstChildOfClass('Humanoid').RigType == Enum.HumanoidRigType.R6 the
 	-------------------------------------------------------------------------
 
 	local RL = char["Right Leg"]
-	char.Torso["Right Hip"]:Destroy()
 	local att0 = Instance.new("Attachment",RL)
 	att0.Orientation = Vector3.new(0, 0, 0)
 	att0.Position = Vector3.new(-0.5, 2, 0)
@@ -71,7 +69,6 @@ if char:FindFirstChildOfClass('Humanoid').RigType == Enum.HumanoidRigType.R6 the
 	-------------------------------------------------------------------------
 
 	local LA = char["Left Arm"]
-	char.Torso["Left Shoulder"]:Destroy()
 	local att0 = Instance.new("Attachment",LA)
 	att0.Orientation = Vector3.new(0, 0, 0)
 	att0.Position = Vector3.new(1.5, 0, 0)
@@ -93,7 +90,6 @@ if char:FindFirstChildOfClass('Humanoid').RigType == Enum.HumanoidRigType.R6 the
 	-------------------------------------------------------------------------
 
 	local RA = char["Right Arm"]
-	char.Torso["Right Shoulder"]:Destroy()
 	local att0 = Instance.new("Attachment",RA)
 	att0.Orientation = Vector3.new(0, 0, 0)
 	att0.Position = Vector3.new(-1.5, 0, 0)
@@ -114,8 +110,7 @@ if char:FindFirstChildOfClass('Humanoid').RigType == Enum.HumanoidRigType.R6 the
 	
 	-------------------------------------------------------------------------
 	
-		local LA = char["Left Arm"]
-	char.Torso["Left Shoulder"]:Destroy()
+	local LA = char["Left Arm"]
 	local att0 = Instance.new("Attachment",LA)
 	att0.Orientation = Vector3.new(0, 0, 0)
 	att0.Position = Vector3.new(1.5, 0, 0)
@@ -137,7 +132,6 @@ if char:FindFirstChildOfClass('Humanoid').RigType == Enum.HumanoidRigType.R6 the
 	-------------------------------------------------------------------------
 
 	local HEAD = char["Head"]
-	--char.Torso["Neck"]:Destroy()
 	local att0 = Instance.new("Attachment",HEAD)
 	att0.Orientation = Vector3.new(0, 0, 0)
 	att0.Position = Vector3.new(-1.5, 0, 0)
@@ -161,6 +155,12 @@ if char:FindFirstChildOfClass('Humanoid').RigType == Enum.HumanoidRigType.R6 the
 	Instance.new("BoolValue", char["Torso"]).Name = "NAP Client Reanim"
 	
 	-------------------------------------------------------------------------
+	
+	for i,v in pairs(char.Torso:GetDescendants()) do
+	    if v:IsA("Motor6D") and v.Name ~= "Neck" then
+	        v:Destroy()
+	    end
+	end
 
 	char.Humanoid.Died:Connect(function()
 		getgenv().Reanimated = false
