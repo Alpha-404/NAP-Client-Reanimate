@@ -12,7 +12,7 @@ local Noclip
 local UserInputService = game:GetService("UserInputService")
 
 if char:FindFirstChildOfClass('Humanoid').RigType == Enum.HumanoidRigType.R6 and getgenv().Reanimated == false then
-    gengenv().Reanimated = true
+    getgenv().Reanimated = true
 	char.Animate:Destroy()
 	local function NL()
 		if p.Character ~= nil then
