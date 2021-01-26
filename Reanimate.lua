@@ -10,6 +10,7 @@ local p = game:GetService("Players").LocalPlayer
 local char = p.Character
 local Noclip
 local UserInputService = game:GetService("UserInputService")
+local lolz
 
 if char:FindFirstChildOfClass('Humanoid').RigType == Enum.HumanoidRigType.R6 then
 	getgenv().Reanimated = true
@@ -116,6 +117,7 @@ if char:FindFirstChildOfClass('Humanoid').RigType == Enum.HumanoidRigType.R6 the
 	char.Humanoid.Died:Connect(function()
 		getgenv().Reanimated = false
 		Noclip:Disconnect()
+		lolz:Disconnect()
 		game:GetService("StarterGui"):SetCore("SendNotification",{Title="NAP Client Reanimate",Text='Disabled Reanimate',Duration=5})
 	end)
 	lolz = p.CharacterAdded:Connect(function()
