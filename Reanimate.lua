@@ -10,7 +10,6 @@ local p = game:GetService("Players").LocalPlayer
 local char = p.Character
 local Noclip
 local UserInputService = game:GetService("UserInputService")
-local lolz
 
 if char:FindFirstChildOfClass('Humanoid').RigType == Enum.HumanoidRigType.R6 then
 	getgenv().Reanimated = true
@@ -113,7 +112,7 @@ if char:FindFirstChildOfClass('Humanoid').RigType == Enum.HumanoidRigType.R6 the
 	local HEAD = char["Head"]
 	local att0 = Instance.new("Attachment",HEAD)
 	att0.Orientation = Vector3.new(0, 0, 0)
-	att0.Position = Vector3.new(-1.5, 0, 0)
+	att0.Position = Vector3.new(0, 1, 0)
 	att0.Name = "HEAD"
 
 	local att1 = Instance.new("Attachment",char["Torso"])
@@ -144,15 +143,9 @@ if char:FindFirstChildOfClass('Humanoid').RigType == Enum.HumanoidRigType.R6 the
 	char.Humanoid.Died:Connect(function()
 		getgenv().Reanimated = false
 		Noclip:Disconnect()
-		lolz:Disconnect()
 		game:GetService("StarterGui"):SetCore("SendNotification",{Title="NAP Client Reanimate",Text='Disabled Reanimate',Duration=5})
 	end)
-	lolz = p.CharacterAdded:Connect(function()
-		getgenv().Reanimated = false
-		Noclip:Disconnect()
-		game:GetService("StarterGui"):SetCore("SendNotification",{Title="NAP Client Reanimate",Text='Disabled Reanimate',Duration=5})
-		lolz:Disconnnect()
-	end)
+	
 	local loaded = Instance.new("Sound", game:GetService("SoundService"))
 	loaded.SoundId = "rbxassetid://1862043663"
 	loaded:Play()
