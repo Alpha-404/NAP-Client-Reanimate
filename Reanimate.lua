@@ -12,7 +12,7 @@ local Noclip
 local UserInputService = game:GetService("UserInputService")
 
 if char:FindFirstChildOfClass('Humanoid').RigType == Enum.HumanoidRigType.R6 then
-    getgenv().Reanimated = true
+	getgenv().Reanimated = true
 	char.Animate:Destroy()
 	local function NL()
 		if p.Character ~= nil then
@@ -110,11 +110,25 @@ if char:FindFirstChildOfClass('Humanoid').RigType == Enum.HumanoidRigType.R6 the
 	ao.Attachment0 = att0
 	ao.Attachment1 = att1
 	ao.RigidityEnabled = true
+	
+	Instance.new("BoolValue", char["Torso"]).Name = "NAP Client Reanim"
 
 	char.Humanoid.Died:Connect(function()
-	    	getgenv().Reanimated = false
+		getgenv().Reanimated = false
 		Noclip:Disconnect()
 		game:GetService("StarterGui"):SetCore("SendNotification",{Title="NAP Client Reanimate",Text='Disabled Reanimate',Duration=5})
+	end)
+	lolz = p.CharacterAdded:Connect(function()
+		getgenv().Reanimated = false
+		Noclip:Disconnect()
+		game:GetService("StarterGui"):SetCore("SendNotification",{Title="NAP Client Reanimate",Text='Disabled Reanimate',Duration=5})
+		lolz:Disconnnect()
+	end)
+	local loaded = Instance.new("Sound", game:GetService("SoundService"))
+	loaded.SoundId = "rbxassetid://1862043663"
+	loaded:Play()
+	loaded.Stopped:Connect(function()
+		loaded:Destroy()
 	end)
 	game:GetService("StarterGui"):SetCore("SendNotification",{Title="NAP Client Reanimate",Text='Reanimated',Duration=5})
 else
