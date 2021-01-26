@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------------------------------------
 
 if getgenv().Reanimated == true then
-    game:GetService("StarterGui"):SetCore("SendNotification",{Title="NAP Client Reanimate",Text='Already Reanimated',Duration=5})
-local p = game:GetService("Players").LocalPlayer
+	game:GetService("StarterGui"):SetCore("SendNotification",{Title="NAP Client Reanimate",Text='Already Reanimated',Duration=5})
+	return
 end
 
 game:GetService("StarterGui"):SetCore("SendNotification",{Title="NAP Client Reanimate",Text='Loading Reanimate...',Duration=5})
