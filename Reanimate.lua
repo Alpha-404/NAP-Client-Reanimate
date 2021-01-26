@@ -107,27 +107,6 @@ if char:FindFirstChildOfClass('Humanoid').RigType == Enum.HumanoidRigType.R6 the
 	ao.Attachment0 = att0
 	ao.Attachment1 = att1
 	ao.RigidityEnabled = true
-	
-	-------------------------------------------------------------------------
-	
-	local LA = char["Left Arm"]
-	local att0 = Instance.new("Attachment",LA)
-	att0.Orientation = Vector3.new(0, 0, 0)
-	att0.Position = Vector3.new(1.5, 0, 0)
-	att0.Name = "LA"
-
-	local att1 = Instance.new("Attachment",char["Torso"])
-
-	local ap = Instance.new("AlignPosition",LA)
-	ap.Attachment0 = att0
-	ap.Attachment1 = att1
-	ap.RigidityEnabled = true 
-
-
-	local ao = Instance.new("AlignOrientation",LA) 
-	ao.Attachment0 = att0
-	ao.Attachment1 = att1
-	ao.RigidityEnabled = true
 
 	-------------------------------------------------------------------------
 
