@@ -12,7 +12,6 @@ local Noclip
 local UserInputService = game:GetService("UserInputService")
 
 if char:FindFirstChildOfClass('Humanoid').RigType == Enum.HumanoidRigType.R6 then
-	char.Animate:Destroy()
 	
 	Noclip = game:GetService('RunService').Stepped:Connect(function()
 		if not p.Character.Torso:FindFirstChild("NAP Client Reanim") then Noclip:Disconnect() end
