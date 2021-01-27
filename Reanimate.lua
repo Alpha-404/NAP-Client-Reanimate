@@ -13,7 +13,9 @@ local UserInputService = game:GetService("UserInputService")
 
 if char:FindFirstChildOfClass('Humanoid').RigType == Enum.HumanoidRigType.R6 then
 	char.Animate:Destroy()
-	local function NL()
+	
+	Noclip = game:GetService('RunService').Stepped:Connect(function()
+		if not p.Character.Torso:FindFirstChild("NAP Client Reanim") then Noclip:Disconnect() end
 		if p.Character ~= nil then
 			for _, child in pairs(p.Character:GetDescendants()) do
 				if child:IsA("BasePart") and child.CanCollide == true then
@@ -22,7 +24,6 @@ if char:FindFirstChildOfClass('Humanoid').RigType == Enum.HumanoidRigType.R6 the
 			end
 		end
 	end
-	Noclip = game:GetService('RunService').Stepped:Connect(NL)
 
 	local LL = char["Left Leg"]
 	local att0 = Instance.new("Attachment",LL)
