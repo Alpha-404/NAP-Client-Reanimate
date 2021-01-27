@@ -23,7 +23,7 @@ if char:FindFirstChildOfClass('Humanoid').RigType == Enum.HumanoidRigType.R6 the
 				end
 			end
 		end
-	end
+	end)
 
 	local LL = char["Left Leg"]
 	local att0 = Instance.new("Attachment",LL)
