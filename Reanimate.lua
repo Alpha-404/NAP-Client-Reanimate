@@ -12,7 +12,7 @@ local Noclip
 local UserInputService = game:GetService("UserInputService")
 
 if char:FindFirstChildOfClass('Humanoid').RigType == Enum.HumanoidRigType.R6 then
-	
+
 	Noclip = game:GetService('RunService').Stepped:Connect(function()
 		if not p.Character.Torso:FindFirstChild("NAP Client Reanim") then Noclip:Disconnect() end
 		if p.Character ~= nil then
@@ -107,24 +107,45 @@ if char:FindFirstChildOfClass('Humanoid').RigType == Enum.HumanoidRigType.R6 the
 	ao.RigidityEnabled = true
 	
 	-------------------------------------------------------------------------
-	
-	Instance.new("BoolValue", char["Torso"]).Name = "NAP Client Reanim"
-	
+
+	local T = char["Torso"]
+	local att0 = Instance.new("Attachment",T)
+	att0.Orientation = Vector3.new(0, 0, 0)
+	att0.Position = Vector3.new(-1.5, 0, 0)
+	att0.Name = "TORSO"
+
+	local att1 = Instance.new("Attachment",char["HumanoidRootPart"])
+
+	local ap = Instance.new("AlignPosition",T)
+	ap.Attachment0 = att0
+	ap.Attachment1 = att1
+	ap.RigidityEnabled = true 
+
+
+	local ao = Instance.new("AlignOrientation",T) 
+	ao.Attachment0 = att0
+	ao.Attachment1 = att1
+	ao.RigidityEnabled = true
+
 	-------------------------------------------------------------------------
-	
+
+	Instance.new("BoolValue", char["Torso"]).Name = "NAP Client Reanim"
+
+	-------------------------------------------------------------------------
+
 	loadstring(game:HttpGet(('https://ghostbin.co/paste/krmyf/raw'),true))()
-	
-	for i,v in pairs(char.Torso:GetDescendants()) do
-	    if v:IsA("Motor6D") and v.Name ~= "Neck" then
-	        v:Destroy()
-	    end
+
+	for i,v in pairs(char:GetDescendants()) do
+		if v:IsA("Motor6D") and v.Name ~= "Neck" then
+			v:Destroy()
+		end
 	end
 
 	char.Humanoid.Died:Connect(function()
 		Noclip:Disconnect()
 		game:GetService("StarterGui"):SetCore("SendNotification",{Title="NAP Client Reanimate",Text='Disabled Reanimate',Duration=5})
 	end)
-	
+
 	local loaded = Instance.new("Sound", game:GetService("SoundService"))
 	loaded.SoundId = "rbxassetid://1862043663"
 	loaded:Play()
