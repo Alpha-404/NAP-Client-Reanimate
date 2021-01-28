@@ -8,10 +8,28 @@ end
 game:GetService("StarterGui"):SetCore("SendNotification",{Title="NAP Client Reanimate",Text='Loading Reanimate...',Duration=5})
 local p = game:GetService("Players").LocalPlayer
 local char = p.Character
-local Noclip
 local UserInputService = game:GetService("UserInputService")
+local NC
 
 if char:FindFirstChildOfClass('Humanoid').RigType == Enum.HumanoidRigType.R6 then
+	-----------------------------------------------------------------------
+	
+	NC = game:GetService('RunService').Stepped:Connect(function()
+		if p.Character ~= nil then
+			for _, child in pairs(p.Character:GetDescendants()) do
+				if child:IsA("BasePart") and child.CanCollide == true then
+					child.CanCollide = false
+				end
+			end
+		end
+	end)
+	
+	spawn(function()
+		p.CharacterAdded:Wait()
+		NC:Disconnect()
+	end)
+	
+	-----------------------------------------------------------------------
 	local LL = char["Left Leg"]
 	local att0 = Instance.new("Attachment",LL)
 	att0.Orientation = Vector3.new(0, 0, 0)
@@ -93,7 +111,7 @@ if char:FindFirstChildOfClass('Humanoid').RigType == Enum.HumanoidRigType.R6 the
 	ao.Attachment0 = att0
 	ao.Attachment1 = att1
 	ao.RigidityEnabled = true
-	
+
 	-------------------------------------------------------------------------
 
 	local T = char["Torso"]
