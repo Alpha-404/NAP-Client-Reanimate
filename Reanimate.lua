@@ -12,18 +12,6 @@ local Noclip
 local UserInputService = game:GetService("UserInputService")
 
 if char:FindFirstChildOfClass('Humanoid').RigType == Enum.HumanoidRigType.R6 then
-
-	Noclip = game:GetService('RunService').Stepped:Connect(function()
-		if not p.Character.Torso:FindFirstChild("NAP Client Reanim") then Noclip:Disconnect() end
-		if p.Character ~= nil then
-			for _, child in pairs(p.Character:GetDescendants()) do
-				if child:IsA("BasePart") and child.CanCollide == true then
-					child.CanCollide = false
-				end
-			end
-		end
-	end)
-
 	local LL = char["Left Leg"]
 	local att0 = Instance.new("Attachment",LL)
 	att0.Orientation = Vector3.new(0, 0, 0)
@@ -140,11 +128,6 @@ if char:FindFirstChildOfClass('Humanoid').RigType == Enum.HumanoidRigType.R6 the
 			v:Destroy()
 		end
 	end
-
-	char.Humanoid.Died:Connect(function()
-		Noclip:Disconnect()
-		game:GetService("StarterGui"):SetCore("SendNotification",{Title="NAP Client Reanimate",Text='Disabled Reanimate',Duration=5})
-	end)
 
 	local loaded = Instance.new("Sound", game:GetService("SoundService"))
 	loaded.SoundId = "rbxassetid://1862043663"
