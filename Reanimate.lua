@@ -111,7 +111,7 @@ if char:FindFirstChildOfClass('Humanoid').RigType == Enum.HumanoidRigType.R6 the
 	local T = char["Torso"]
 	local att0 = Instance.new("Attachment",T)
 	att0.Orientation = Vector3.new(0, 0, 0)
-	att0.Position = Vector3.new(-1.5, 0, 0)
+	att0.Position = Vector3.new(0, 0, 0)
 	att0.Name = "TORSO"
 
 	local att1 = Instance.new("Attachment",char["HumanoidRootPart"])
