@@ -12,6 +12,49 @@ local UserInputService = game:GetService("UserInputService")
 local NC
 
 if char:FindFirstChildOfClass('Humanoid').RigType == Enum.HumanoidRigType.R6 then
+	game:GetService("Players").LocalPlayer.Character.Archivable = true 
+
+	local real_hum = p.Character
+	local fake_hum = Instance.new("Model", workspace)
+	local fake_human = Instance.new("Humanoid", fake_hum)
+	local anim_holder = Instance.new("Model", workspace)
+	anim_holder.Name = "AnimStorageTemp"
+	Instance.new("Humanoid", anim_holder)
+	
+	real_hum.Animate.Parent = fake_hum
+	local rig = real_hum.Humanoid.RigType
+	if rig ~= Enum.HumanoidRigType.R6 then
+		real_hum.Pants.Parent = fake_hum
+		real_hum.Shirt.Parent = fake_hum
+	end
+	
+	game:GetService("Players").LocalPlayer.Character = fake_hum
+	real_hum.Humanoid.Animator.Parent = anim_holder.Humanoid
+	real_hum.Humanoid:Destroy()
+	wait(3)
+	p.Character = real_hum
+	local new_human = Instance.new('Humanoid', p.Character)
+	anim_holder.Humanoid.Animator.Parent = p.Character.Humanoid
+
+	if rig ~= Enum.HumanoidRigType.R6 then
+		new_human.HipHeight = 2.19
+		fake_hum.Pants.Parent = real_hum
+		fake_hum.Shirt.Parent = real_hum
+		new_human.RigType = Enum.HumanoidRigType.R15
+	end
+	fake_hum.Animate.Parent = real_hum
+
+	local Reset = Instance.new("BindableEvent")
+	Reset.Event:Connect(function()
+		game:GetService("StarterGui"):SetCore("ResetButtonCallback", true)
+		Reset:Destroy()
+		fake_human.Health = 0
+		anim_holder.Humanoid.Health = 0
+		new_human.Health = 0
+		p.Character = fake_hum
+	end)
+	game:GetService("StarterGui"):SetCore("ResetButtonCallback", Reset)
+	
 	-----------------------------------------------------------------------
 	
 	NC = game:GetService('RunService').Stepped:Connect(function()
