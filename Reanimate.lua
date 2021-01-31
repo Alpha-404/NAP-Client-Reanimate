@@ -31,7 +31,7 @@ if char:FindFirstChildOfClass('Humanoid').RigType == Enum.HumanoidRigType.R6 the
 	game:GetService("Players").LocalPlayer.Character = fake_hum
 	real_hum.Humanoid.Animator.Parent = anim_holder.Humanoid
 	real_hum.Humanoid:Destroy()
-	wait(3)
+	wait()
 	p.Character = real_hum
 	local new_human = Instance.new('Humanoid', p.Character)
 	anim_holder.Humanoid.Animator.Parent = p.Character.Humanoid
