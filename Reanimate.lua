@@ -14,49 +14,57 @@ local NC
 if char:FindFirstChildOfClass('Humanoid').RigType == Enum.HumanoidRigType.R6 then
 	game:GetService("Players").LocalPlayer.Character.Archivable = true 
 
-	local real_hum = p.Character
-	local fake_hum = Instance.new("Model", workspace)
-	local fake_human = Instance.new("Humanoid", fake_hum)
-	local anim_holder = Instance.new("Model", workspace)
-	anim_holder.Name = "AnimStorageTemp"
-	Instance.new("Humanoid", anim_holder)
-	
-	real_hum.Animate.Parent = fake_hum
-	local rig = real_hum.Humanoid.RigType
-	if rig ~= Enum.HumanoidRigType.R6 then
-		real_hum.Pants.Parent = fake_hum
-		real_hum.Shirt.Parent = fake_hum
+	local p = game:GetService("Players").LocalPlayer
+	local c = p.Character
+	local temp = Instance.new("Model", workspace)
+	Instance.new("Humanoid",temp)
+	temp.Name = "Fred"
+	p.Character = temp
+	if c:FindFirstChildOfClass("Humanoid"):FindFirstChild("Animator") then
+		c:FindFirstChildOfClass("Humanoid").Animator.Parent = temp.Humanoid
 	end
-	
-	game:GetService("Players").LocalPlayer.Character = fake_hum
-	real_hum.Humanoid.Animator.Parent = anim_holder.Humanoid
-	real_hum.Humanoid:Destroy()
 	wait()
-	p.Character = real_hum
-	local new_human = Instance.new('Humanoid', p.Character)
-	anim_holder.Humanoid.Animator.Parent = p.Character.Humanoid
-
-	if rig ~= Enum.HumanoidRigType.R6 then
-		new_human.HipHeight = 2.19
-		fake_hum.Pants.Parent = real_hum
-		fake_hum.Shirt.Parent = real_hum
-		new_human.RigType = Enum.HumanoidRigType.R15
+	local rig
+	if c:FindFirstChildOfClass("Humanoid").RigType == Enum.HumanoidRigType.R15 then
+		rig = "R15"
+	else
+		rig = "R6"
 	end
-	fake_hum.Animate.Parent = real_hum
-
 	local Reset = Instance.new("BindableEvent")
 	Reset.Event:Connect(function()
 		game:GetService("StarterGui"):SetCore("ResetButtonCallback", true)
 		Reset:Destroy()
-		fake_human.Health = 0
-		anim_holder.Humanoid.Health = 0
-		new_human.Health = 0
-		p.Character = fake_hum
+		local m = Instance.new("Model", workspace)
+		m.Name = "UwU"
+		local h = Instance.new("Humanoid", m)
+		p.Character = m
+		wait()
+		h.Health = 0
+		p.ChildAdded:Wait()
+		m:Destroy()
 	end)
 	game:GetService("StarterGui"):SetCore("ResetButtonCallback", Reset)
-	
+	c.Humanoid:Destroy()
+	local humanoid = Instance.new("Humanoid", c)
+	humanoid.DisplayDistanceType = Enum.HumanoidDisplayDistanceType.None
+	humanoid.HealthDisplayDistance = Enum.HumanoidHealthDisplayType.AlwaysOff
+	if rig == "R15" then
+		humanoid.RigType = Enum.HumanoidRigType.R15
+		humanoid.HipHeight = 2.19
+	else
+		humanoid.RigType = Enum.HumanoidRigType.R6
+	end
+	p.Character = c
+	workspace.CurrentCamera.CameraSubject = c
+	if c:FindFirstChild("Animate") then
+		c.Animate.Disabled = true
+		c.Animate.Disabled = false
+	end
+	wait()
+	temp:Destroy()
+
 	-----------------------------------------------------------------------
-	
+
 	NC = game:GetService('RunService').Stepped:Connect(function()
 		if p.Character ~= nil then
 			for _, child in pairs(p.Character:GetDescendants()) do
@@ -66,12 +74,12 @@ if char:FindFirstChildOfClass('Humanoid').RigType == Enum.HumanoidRigType.R6 the
 			end
 		end
 	end)
-	
+
 	spawn(function()
 		p.CharacterAdded:Wait()
 		NC:Disconnect()
 	end)
-	
+
 	-----------------------------------------------------------------------
 	local LL = char["Left Leg"]
 	local att0 = Instance.new("Attachment",LL)
