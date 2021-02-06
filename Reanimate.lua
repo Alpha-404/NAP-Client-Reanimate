@@ -200,7 +200,7 @@ if char:FindFirstChildOfClass('Humanoid').RigType == Enum.HumanoidRigType.R6 the
 	end
 
 	local loaded = Instance.new("Sound", game:GetService("SoundService"))
-	loaded.SoundId = "rbxassetid://1862043663"
+	loaded.SoundId = "rbxassetid://398204076"
 	loaded:Play()
 	loaded.Stopped:Connect(function()
 		loaded:Destroy()
