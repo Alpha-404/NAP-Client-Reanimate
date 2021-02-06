@@ -187,7 +187,28 @@ if char:FindFirstChildOfClass('Humanoid').RigType == Enum.HumanoidRigType.R6 the
 
 	-------------------------------------------------------------------------
 
-	Instance.new("BoolValue", char["Torso"]).Name = "NAP Client Reanim"
+	local HEAD = char["Head"] --This serves no purpose but to stop your head from falling off
+	local att0 = Instance.new("Attachment",HEAD)
+	att0.Orientation = Vector3.new(0, 0, 0)
+	att0.Position = Vector3.new(0, -1.5, 0)
+	att0.Name = "HEAD"
+
+	local att1 = Instance.new("Attachment",char["Torso"])
+
+	local ap = Instance.new("AlignPosition",HEAD)
+	ap.Attachment0 = att0
+	ap.Attachment1 = att1
+	ap.RigidityEnabled = true 
+
+
+	local ao = Instance.new("AlignOrientation",HEAD) 
+	ao.Attachment0 = att0
+	ao.Attachment1 = att1
+	ao.RigidityEnabled = true
+	
+	-------------------------------------------------------------------------
+
+	Instance.new("BoolValue", char["Torso"]).Name = "NAP Client Reanim" --I should rename this to Star Nebula Reanimate
 
 	-------------------------------------------------------------------------
 
