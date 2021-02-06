@@ -191,7 +191,7 @@ if char:FindFirstChildOfClass('Humanoid').RigType == Enum.HumanoidRigType.R6 the
 
 	-------------------------------------------------------------------------
 
-	loadstring(game:HttpGet(('https://ghostbin.co/paste/krmyf/raw'),true))()
+	--loadstring(game:HttpGet(('https://ghostbin.co/paste/krmyf/raw'),true))()
 
 	for i,v in pairs(char:GetDescendants()) do
 		if v:IsA("Motor6D") and v.Name ~= "Neck" then
