@@ -13,19 +13,17 @@ local NC
 
 if char:FindFirstChildOfClass('Humanoid').RigType == Enum.HumanoidRigType.R6 then
 	game:GetService("Players").LocalPlayer.Character.Archivable = true 
-
-	local p = game:GetService("Players").LocalPlayer
-	local c = p.Character
+	
 	local temp = Instance.new("Model", workspace)
 	Instance.new("Humanoid",temp)
 	temp.Name = "Fred"
 	p.Character = temp
-	if c:FindFirstChildOfClass("Humanoid"):FindFirstChild("Animator") then
-		c:FindFirstChildOfClass("Humanoid").Animator.Parent = temp.Humanoid
+	if char:FindFirstChildOfClass("Humanoid"):FindFirstChild("Animator") then
+		char:FindFirstChildOfClass("Humanoid").Animator.Parent = temp.Humanoid
 	end
 	wait()
 	local rig
-	if c:FindFirstChildOfClass("Humanoid").RigType == Enum.HumanoidRigType.R15 then
+	if char:FindFirstChildOfClass("Humanoid").RigType == Enum.HumanoidRigType.R15 then
 		rig = "R15"
 	else
 		rig = "R6"
@@ -37,6 +35,8 @@ if char:FindFirstChildOfClass('Humanoid').RigType == Enum.HumanoidRigType.R6 the
 		local m = Instance.new("Model", workspace)
 		m.Name = "UwU"
 		local h = Instance.new("Humanoid", m)
+		p.Character:Destroy()
+		wait()
 		p.Character = m
 		wait()
 		h.Health = 0
@@ -44,8 +44,9 @@ if char:FindFirstChildOfClass('Humanoid').RigType == Enum.HumanoidRigType.R6 the
 		m:Destroy()
 	end)
 	game:GetService("StarterGui"):SetCore("ResetButtonCallback", Reset)
-	c.Humanoid:Destroy()
-	local humanoid = Instance.new("Humanoid", c)
+	char.Humanoid:Destroy()
+	local humanoid = Instance.new("Humanoid", char)
+	humanoid.RequiresNeck = false
 	humanoid.DisplayDistanceType = Enum.HumanoidDisplayDistanceType.None
 	humanoid.HealthDisplayDistance = Enum.HumanoidHealthDisplayType.AlwaysOff
 	if rig == "R15" then
@@ -54,11 +55,11 @@ if char:FindFirstChildOfClass('Humanoid').RigType == Enum.HumanoidRigType.R6 the
 	else
 		humanoid.RigType = Enum.HumanoidRigType.R6
 	end
-	p.Character = c
-	workspace.CurrentCamera.CameraSubject = c
-	if c:FindFirstChild("Animate") then
-		c.Animate.Disabled = true
-		c.Animate.Disabled = false
+	p.Character = char
+	workspace.CurrentCamera.CameraSubject = char
+	if char:FindFirstChild("Animate") then
+		char.Animate.Disabled = true
+		char.Animate.Disabled = false
 	end
 	wait()
 	temp:Destroy()
