@@ -215,7 +215,7 @@ if char:FindFirstChildOfClass('Humanoid').RigType == Enum.HumanoidRigType.R6 the
 	--loadstring(game:HttpGet(('https://ghostbin.co/paste/krmyf/raw'),true))()
 
 	for i,v in pairs(char:GetDescendants()) do
-		if v:IsA("Motor6D") and v.Name ~= "Neck" then
+		if v:IsA("Motor6D" or "BallSocketConstraint") and v.Name ~= "Neck" then
 			v:Destroy()
 		end
 	end
